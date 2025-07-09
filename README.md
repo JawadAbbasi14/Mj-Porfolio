@@ -8,7 +8,7 @@ This project showcases my work, skills, and personality — all wrapped in a mod
 ## 🌐 Live Site
 
 📍 **View Online:**  
-🔗 [Click here to visit the live portfolio](https://jawadabbasi14.github.io/JawadAbbasi14/)
+🔗 [Click here to visit the live portfolio](https://jawadabbasi14.github.io/Mj-Porfolio/)
 
 ---
 
