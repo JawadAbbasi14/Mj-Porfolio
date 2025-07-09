@@ -1,29 +1,32 @@
-# 🚀 Jawad Abbasi - Portfolio Website
+# 🚀 MJ Abbasi – Personal Portfolio Website
 
-Welcome to my **personal portfolio website**!  
-This site represents my work, skills, and creativity as a tech enthusiast. It’s built with clean code and a modern layout — designed to work seamlessly across all devices. 👨‍💻✨
-
----
-
-## 🌐 Live Demo
-
-🔗 **Check it out here:**  
-👉 [Visit My Portfolio Website](https://jawadabbasi14.github.io/Mj-Porfolio/) 👈
+Welcome to the official portfolio of **MJ Abbasi**, a passionate full-stack developer, designer, and tech enthusiast.  
+This project showcases my work, skills, and personality — all wrapped in a modern, responsive, and elegant web experience.
 
 ---
 
-## 📌 What's Inside?
+## 🌐 Live Site
 
-- 🙋‍♂️ Introductory section about me  
-- 🛠️ Clean & minimal Services section  
-- 💼 Highlighted Projects (static layout)  
-- 📬 Contact section with custom message toast  
-- 🌓 **Light/Dark Mode toggle**  
-- 📱 100% responsive design for mobile, tablet, and desktop  
+📍 **View Online:**  
+🔗 [Click here to visit the live portfolio](https://jawadabbasi14.github.io/JawadAbbasi14/)
 
 ---
 
-## 🖼️ Preview Screenshots
+## ✨ Highlights & Features
+
+| Feature                        | Description                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| 🌓 Light/Dark Mode            | Toggle between soft-light and sleek-dark themes seamlessly                  |
+| 📱 Fully Responsive           | Optimized for all devices — mobile, tablet, desktop                         |
+| 💼 Project Showcase           | Visually organized static portfolio layout                                 |
+| 🎨 Intro & Services Sections  | Cleanly split pages with modular HTML design                               |
+| 📄 CV/Resume Preview          | Embedded downloadable PDF CV                                                |
+| 📂 Multi-Page Architecture    | Pages: Intro, Services, Blog, CV, Projects                                  |
+| ⚡ Hosted via GitHub Pages    | Fast, free, and stable static hosting                                      |
+
+---
+
+## 🖼️ Screenshots
 
 ### 🌞 Light Mode
 
@@ -35,20 +38,16 @@ This site represents my work, skills, and creativity as a tech enthusiast. It’
 
 ---
 
-## 📁 Project Structure
+## 🛠 Tech Stack
 
-This website is built using:
-
-- 🔤 **HTML5** – for the basic structure  
-- 🎨 **CSS3** – for styling and layout  
-- 📂 **Organized folders** – clean asset management  
-- 🧰 **Git & GitHub** – for version control and deployment  
+| Tech         | Role                                |
+|--------------|--------------------------------------|
+| `HTML5`      | Page structure                       |
+| `CSS3`       | Styling & layout                     |
+| `Vanilla JS` | UI interaction and toggles           |
+| `GitHub Pages` | Deployment and hosting             |
 
 ---
 
-## 🤝 Let's Connect!
+## 📁 Project Structure
 
-Thanks for visiting! Feel free to explore, fork, or share your feedback.  
-I’m always learning and building — this is just the beginning! 🚀💻
-
-> © 2024 — Built by **MJ Abbasi** with ❤️
