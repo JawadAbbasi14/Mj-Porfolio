@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro Page - Jawad</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Roboto Slab, Poppins for consistent styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Root CSS Variables - Default to Light Mode */
+        :root {
+            --primary: #6e48aa; /* Original Purple */
+            --secondary: #9d50bb; /* Original Lighter Purple */
+            --accent: #ff6b6b; /* Original Red/Orange Accent */
+            /* Light Mode Specific Colors */
+            --bg-main: #f5f7fa; /* Very light grey-blue */
+            --bg-secondary: #e4e7f0; /* Slightly darker light grey-blue */
+            --text-main: #333; /* Dark text */
+            --text-secondary: #666; /* Medium dark text */
+            --card-bg: rgba(255, 255, 255, 0.95); /* Light card background */
+            --glass-bg-base: rgba(255, 255, 255, 0.1); /* General glass transparency */
+            --border-color-light: rgba(238, 238, 238, 0.3); /* Light border for cards */
+            --shadow-light: 0 15px 40px rgba(0, 0, 0, 0.25); /* Light shadow */
+            --glow-light: 0 0 20px rgba(110, 72, 170, 0.5); /* Light glow */
+            --sidebar-bg-light: linear-gradient(135deg, rgba(110, 72, 170, 0.9), rgba(157, 80, 187, 0.9));
+            --sidebar-item-bg-light: rgba(255, 255, 255, 0.05);
+            --sidebar-item-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --sidebar-item-hover-gradient-light: linear-gradient(90deg, var(--secondary), var(--primary));
+            /* Dark Mode Specific Colors (matching previous page's theme for consistency) */
+            --dark-mode-main-pink: #8B008B; /* Dark Magenta */
+            --dark-mode-light-pink: #C71585; /* MediumVioletRed */
+            --dark-mode-hot-pink: #FF69B4; /* Hot Pink */
+            --dark-mode-black: #000000; /* Pure Black */
+            /* Dark Mode Overrides */
+            --bg-main-dark: #000000; /* Pure Black for dark mode background */
+            --bg-secondary-dark: #1a001a; /* Darker pink-tinted background */
+            --text-main-dark: #e6e6e6; /* Light text for dark mode */
+            --text-secondary-dark: #b8b8b8; /* Medium light text for dark mode */
+            --card-bg-dark: rgba(22, 33, 62, 0.95); /* Dark card background */
+            --glass-bg-base-dark: rgba(0, 0, 0, 0.2); /* Darker glass transparency */
+            --border-color-dark: rgba(42, 42, 74, 0.3); /* Dark border for cards */
+            --shadow-dark: 0 15px 40px rgba(0, 0, 0, 0.5); /* Dark shadow */
+            --glow-dark-primary: 0 0 25px rgba(139, 0, 139, 0.7); /* Stronger pink glow */
+            --glow-dark-secondary: 0 0 35px rgba(255, 105, 180, 0.8); /* Hot pink glow */
+            --sidebar-bg-dark: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(59, 59, 100, 0.95));
+            --sidebar-item-bg-dark: rgba(255, 255, 255, 0.03);
+            --sidebar-item-shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --sidebar-item-hover-gradient-dark: linear-gradient(90deg, var(--dark-mode-light-pink), var(--dark-mode-black));
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Body Styling - Dynamic based on theme */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-secondary) 100%);
+            color: var(--text-main);
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+        body.dark {
+            background: linear-gradient(135deg, var(--bg-main-dark) 0%, var(--bg-secondary-dark) 50%, var(--dark-mode-main-pink) 100%);
+            color: var(--text-main-dark);
+            box-shadow: inset 0 0 50px rgba(139, 0, 139, 0.1); /* Inner glow effect */
+        }
+        /* Glassmorphism Background - Dynamic based on theme */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--glass-bg-base);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: -1;
+            animation: subtlePulse 10s infinite ease-in-out;
+            transition: background var(--transition), backdrop-filter var(--transition);
+        }
+        body.dark::before {
+            background: var(--glass-bg-base-dark);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: subtlePulseDark 10s infinite ease-in-out;
+        }
+        @keyframes subtlePulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        @keyframes subtlePulseDark {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.9; }
+        }
+        /* Container for Sidebar and Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 3rem;
+            perspective: 1000px;
+            width: 100%; /* Ensure container takes full width */
+        }
+        /* Sidebar Styles - Dynamic based on theme */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start; /* Corrected to flex-start for sticky behavior */
+            width: 300px; /* Adjusted width for consistency with portfolio page */
+            background: var(--sidebar-bg-light); /* Dynamic background */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: var(--shadow-light), 0 0 10px rgba(110, 72, 170, 0.3); /* Initial glow */
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+            animation: floating 8s ease-in-out infinite;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        body.dark .sidebar {
+            background: var(--sidebar-bg-dark); /* Darker background */
+            box-shadow: var(--shadow-dark), var(--glow-dark-primary); /* Dark pink initial glow */
+            animation: sidebarGlowDark 4s ease-in-out infinite; /* Dark mode specific glow animation */
+        }
+        .sidebar:hover {
+            transform: translateZ(30px) translateX(10px) rotateY(5deg);
+            box-shadow: var(--glow-light), 0 0 30px rgba(110, 72, 170, 0.7); /* Enhanced glow on hover */
+        }
+        body.dark .sidebar:hover {
+            box-shadow: var(--shadow-dark), var(--glow-dark-secondary); /* Stronger dark pink glow on hover */
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+        .sidebar ul li:nth-child(1) { animation-delay: 0.1s; }
+        .sidebar ul li:nth-child(2) { animation-delay: 0.2s; }
+        .sidebar ul li:nth-child(3) { animation-delay: 0.3s; }
+        .sidebar ul li:nth-child(4) { animation-delay: 0.4s; }
+        .sidebar ul li:nth-child(5) { animation-delay: 0.5s; }
+        .sidebar ul li:nth-child(6) { animation-delay: 0.6s; }
+        .sidebar ul li:nth-child(7) { animation-delay: 0.7s; }
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            color: white; /* Text color always white for contrast with sidebar gradient */
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            transition: var(--transition);
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background: var(--sidebar-item-bg-light); /* Subtle transparent background */
+            box-shadow: var(--sidebar-item-shadow-light); /* Subtle initial shadow */
+        }
+        body.dark .sidebar-item {
+            background: var(--sidebar-item-bg-dark);
+            box-shadow: var(--sidebar-item-shadow-dark); /* Darker initial shadow */
+        }
+        .sidebar-item.active {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.5);
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* White glow for active text */
+        }
+        body.dark .sidebar-item.active {
+            background: linear-gradient(90deg, var(--dark-mode-main-pink), var(--dark-mode-hot-pink)); /* Dark pink gradient */
+            box-shadow: 0 5px 20px rgba(139, 0, 139, 0.7); /* Stronger dark pink glow */
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); /* Brighter white glow for active text */
+        }
+        .sidebar-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--sidebar-item-hover-gradient-light); /* Light mode hover gradient */
+            transition: width 0.5s ease;
+            z-index: -1;
+        }
+        body.dark .sidebar-item:before {
+            background: var(--sidebar-item-hover-gradient-dark); /* Dark mode hover gradient */
+        }
+        .sidebar-item:hover:before {
+            width: 100%;
+        }
+        .sidebar-item:hover {
+            transform: translateX(8px) translateZ(10px) scale(1.03);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            color: white; /* Ensure text is white on hover */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* Text glow on hover */
+        }
+        body.dark .sidebar-item:hover {
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5), var(--glow-dark-primary); /* Dark pink glow on hover */
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Brighter text glow on hover */
+        }
+        .icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+        .sidebar-item:hover .icon {
+            transform: scale(1.4) rotate(10deg);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9); /* Strong white glow for icon */
+        }
+        .sidebar-item.active .icon {
+            transform: scale(1.3);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); /* Strong white glow for active icon */
+        }
+        /* Sidebar Animations */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes floating {
+            0% { transform: translateZ(20px) translateY(0); }
+            50% { transform: translateZ(20px) translateY(-10px); }
+            100% { transform: translateZ(20px) translateY(0); }
+        }
+        @keyframes sidebarGlow {
+            0%, 100% { box-shadow: var(--shadow-light), 0 0 10px rgba(110, 72, 170, 0.3); }
+            50% { box-shadow: var(--shadow-light), 0 0 20px rgba(110, 72, 170, 0.5); }
+        }
+        @keyframes sidebarGlowDark {
+            0%, 100% { box-shadow: var(--shadow-dark), var(--glow-dark-primary); }
+            50% { box-shadow: var(--shadow-dark), var(--glow-dark-secondary); } /* Hot pink glow */
+        }
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 4rem 0;
+            display: flex; /* Added flex to center content */
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            min-height: calc(100vh - 4rem); /* Adjust min-height for padding */
+        }
+        .intro {
+            max-width: 800px;
+            background: var(--card-bg); /* Dynamic card background */
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-light), 0 1px 0 rgba(255,255,255,0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color-light); /* Dynamic border */
+            animation: fadeInUp 0.8s ease both;
+            position: relative;
+            overflow: hidden;
+            transition: background var(--transition), border-color var(--transition), box-shadow var(--transition); /* Smooth transition for theme change */
+        }
+        body.dark .intro {
+            background: var(--card-bg-dark);
+            border: 1px solid var(--border-color-dark);
+            box-shadow: var(--shadow-dark), 0 1px 0 rgba(0,0,0,0.4);
+        }
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent 0%, var(--primary) 10%, transparent 20%, transparent 30%, var(--secondary) 40%, transparent 50%, transparent 60%, var(--accent) 70%, transparent 80%, transparent 90%, var(--primary) 100%);
+            animation: rotateGradient 15s linear infinite;
+            z-index: -1;
+            opacity: 0.1;
+            transition: background var(--transition), opacity var(--transition);
+        }
+        body.dark .intro::before {
+            background: conic-gradient(from 0deg, transparent 0%, var(--dark-mode-main-pink) 10%, transparent 20%, transparent 30%, var(--dark-mode-light-pink) 40%, transparent 50%, transparent 60%, var(--dark-mode-hot-pink) 70%, transparent 80%, transparent 90%, var(--dark-mode-main-pink) 100%);
+            opacity: 0.15;
+        }
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Profile Picture Styling */
+        .profile-pic {
+            display: block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem auto; /* Center the image and add margin below */
+            border: 3px solid transparent; /* Initial transparent border */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle initial shadow */
+            transition: all var(--transition) ease-out; /* Smooth transition for hover effects */
+            transform: translateZ(20px); /* Bring slightly forward in 3D space */
+        }
+        .profile-pic:hover {
+            transform: scale(1.1) translateZ(30px); /* Scale up and bring more forward on hover */
+            /* Glowing border effect on hover */
+            box-shadow: 0 0 20px 5px var(--primary), /* Primary glow */
+                        0 0 40px 10px var(--accent); /* Accent glow */
+            border-color: var(--primary); /* Border color changes to primary */
+        }
+        body.dark .profile-pic:hover {
+            box-shadow: 0 0 20px 5px var(--dark-mode-main-pink), /* Dark mode primary glow */
+                        0 0 40px 10px var(--dark-mode-hot-pink); /* Dark mode accent glow */
+            border-color: var(--dark-mode-main-pink); /* Dark mode border color */
+        }
+        .intro h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary); /* Dynamic heading color */
+            position: relative;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            font-family: 'Roboto Slab', serif;
+            transform: translateZ(30px);
+            text-shadow: var(--glow-light); /* Dynamic glow */
+            transition: color var(--transition), text-shadow var(--transition); /* Added transition for glow */
+        }
+        body.dark .intro h1 {
+            background: linear-gradient(45deg, var(--dark-mode-black), var(--dark-mode-light-pink), var(--dark-mode-hot-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.4), var(--glow-dark-primary); /* Dark pink glow */
+        }
+        body.dark .intro h1:hover {
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.6), var(--glow-dark-secondary); /* Stronger hot pink glow on hover */
+            transform: translateZ(40px) translateY(-5px);
+        }
+        .intro h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--secondary); /* Dynamic subheading color */
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: color var(--transition); /* Smooth transition for theme change */
+        }
+        body.dark .intro h2 {
+            color: var(--dark-mode-light-pink);
+        }
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary); /* Dynamic paragraph color */
+            transition: color var(--transition); /* Smooth transition for theme change */
+        }
+        body.dark .intro p {
+            color: var(--text-secondary-dark);
+        }
+        .intro-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .intro-links a {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin: 0 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        body.dark .intro-links a {
+            background: linear-gradient(135deg, var(--dark-mode-main-pink), var(--dark-mode-hot-pink));
+        }
+        .intro-links a:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px var(--primary); /* Neon glow on hover */
+        }
+        body.dark .intro-links a:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px var(--dark-mode-hot-pink); /* Neon glow on hover */
+        }
+        /* Back to Homepage Button */
+        .go-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            margin: 3rem auto;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+        body.dark .go-home {
+            background: linear-gradient(135deg, var(--dark-mode-black), var(--dark-mode-light-pink));
+            box-shadow: var(--shadow-dark);
+        }
+        .go-home:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            transition: width 0.5s ease;
+            z-index: -1;
+        }
+        body.dark .go-home:before {
+            background: linear-gradient(135deg, var(--dark-mode-light-pink) 0%, var(--dark-mode-hot-pink) 100%);
+        }
+        .go-home:hover:before {
+            width: 100%;
+        }
+        .go-home:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: var(--glow-light);
+        }
+        body.dark .go-home:hover {
+            box-shadow: var(--glow-dark-primary);
+        }
+        .go-home i {
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+        .go-home:hover i {
+            transform: translateX(-5px);
+        }
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            color: var(--text-secondary); /* Dynamic text color */
+            font-size: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background: var(--glass-bg-base);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: background var(--transition), border-top var(--transition), color var(--transition); /* Smooth transition for theme change */
+        }
+        body.dark .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary-dark);
+            background: var(--glass-bg-base-dark);
+        }
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 30px; /* Adjusted position to top right */
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            z-index: 100;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+        }
+        .theme-toggle:hover {
+            transform: translateY(-8px) rotate(20deg);
+            box-shadow: var(--glow-light);
+        }
+        body.dark .theme-toggle {
+            background: linear-gradient(135deg, var(--dark-mode-black), var(--dark-mode-light-pink));
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), var(--glow-dark-primary);
+            color: white;
+        }
+        body.dark .theme-toggle:hover {
+            transform: translateY(-10px) rotate(25deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), var(--glow-dark-secondary);
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animated-heading {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                padding: 0 15px; /* Adjust padding for smaller screens */
+            }
+            .sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                margin-bottom: 3rem;
+                padding: 1.5rem;
+                border-radius: 15px;
+                animation: none; /* Disable floating animation on smaller screens */
+                transform: none; /* Reset transform */
+            }
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .sidebar ul li {
+                margin: 0;
+            }
+            .sidebar-item {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+            .main-content {
+                padding: 2rem 0; /* Adjust main content padding */
+            }
+        }
+        @media (max-width: 768px) {
+            .animated-heading {
+                font-size: 2.8rem;
+            }
+            .intro h1 {
+                font-size: 2.5rem;
+            }
+            .intro h2 {
+                font-size: 1.8rem;
+            }
+            .intro p {
+                font-size: 1rem;
+            }
+            .sidebar {
+                padding: 1rem;
+            }
+            .sidebar-item {
+                padding: 0.7rem 1rem;
+                font-size: 0.95rem;
+            }
+            .icon {
+                font-size: 1.3rem;
+                margin-right: 10px;
+            }
+            .theme-toggle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                top: 20px;
+                right: 20px;
+            }
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            .go-home {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .animated-heading {
+                font-size: 2.2rem;
+            }
+            .intro h1 {
+                font-size: 2rem;
+            }
+            .intro h2 {
+                font-size: 1.5rem;
+            }
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+            .sidebar-item {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            .intro {
+                padding: 1.5rem;
+            }
+            .icon {
+                font-size: 1.2rem;
+                margin-right: 8px;
+            }
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="light">
+    <!-- Full-page Glass Background -->
+    <div class="glass-bg"></div>
+    <div class="container">
+        <aside class="sidebar">
+            <!-- Sidebar Header (Optional - can be added if needed, but removed for cleaner look as per previous request) -->
+            <!-- <div class="sidebar-header">
+                <h1>Developer</h1>
+                <h2>Jawad</h2>
+            </div> -->
+            <ul>
+                <li><a href="index.html" class="sidebar-item"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="myintro.html" class="sidebar-item active"><span class="icon">👨‍💻</span> My Intro</a></li>
+                <li><a href="services.html" class="sidebar-item"><span class="icon">⚙️</span> Services</a></li>
+                <li><a href="cv.html" class="sidebar-item"><span class="icon">📄</span> CV</a></li>
+                <li><a href="blog.html" class="sidebar-item"><span class="icon">📝</span> Blog</a></li>
+                <li><a href="contactme.html" class="sidebar-item"><span class="icon">📞</span> Contact Me</a></li>
+                <li><a href="myProject.html" class="sidebar-item"><span class="icon">📽</span> MY Projects</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <div class="intro">
+                <!-- Profile Picture Placeholder -->
+                <img class="profile-pic" src="jawadphoto.jpg" alt="Jawad's Profile Picture">
+                <h1 class="animated-heading">Hello, I'm Jawad!</h1>
+                <h2>A Dedicated Python Developer & AI Enthusiast</h2>
+                <p>Welcome to my digital space! I'm Jawad, a dedicated Python Developer passionate about crafting intelligent and efficient solutions. My journey in development began with a fascination for problem-solving through code, evolving into a specialization in backend systems, data processing, and artificial intelligence.</p>
+                <p>I leverage Python's versatility to build robust applications, from scalable web backends and intricate data pipelines to powerful machine learning models. My focus is on writing clean, optimized code that not only solves complex challenges but also delivers tangible value.</p>
+                <p>Beyond the lines of code, I'm a fervent advocate for continuous learning, always exploring the latest advancements in Python, AI, and software architecture. I thrive on collaborative projects, eager to contribute my expertise to innovative solutions that make a real impact.</p>
+                <div class="intro-links">
+                    <a href="myProject.html">View My Projects <i class="fas fa-arrow-right"></i></a>
+                    <a href="contactme.html">Contact Me <i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <a href="index.html" class="go-home"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+        </main>
+    </div>
+    <div class="footer">
+        <p>© 2023 Jawad's Portfolio. All rights reserved. | Designed with ❤️</p>
+    </div>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle-btn">
+        <i class="fas fa-moon"></i>
+    </button>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            const themeToggleIcon = themeToggleBtn.querySelector('i');
+            // Function to set theme
+            const setTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark');
+                    body.classList.remove('light');
+                    themeToggleIcon.classList.remove('fa-moon');
+                    themeToggleIcon.classList.add('fa-sun');
+                } else {
+                    body.classList.add('light');
+                    body.classList.remove('dark');
+                    themeToggleIcon.classList.remove('fa-sun');
+                    themeToggleIcon.classList.add('fa-moon');
+                }
+                localStorage.setItem('theme', theme);
+            };
+            // Get saved theme preference or detect system preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(prefersDark ? 'dark' : 'light');
+            }
+            // Theme toggle button click event
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+            // Set active class for current page in sidebar
+            const currentPage = window.location.pathname.split('/').pop();
+            const sidebarLinks = document.querySelectorAll('.sidebar .sidebar-item');
+            sidebarLinks.forEach(link => {
+                // Remove active class from all links first
+                link.classList.remove('active');
+                // Add active class if href matches current page
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            // Handle the case for index.html (home page)
+            if (currentPage === '' || currentPage === 'index.html') {
+                document.querySelector('.sidebar-item[href="index.html"]').classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

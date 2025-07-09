@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Developer Jawad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.6s cubic-bezier(0.25, 1, 0.5, 1), color 0.6s;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Define CSS Variables for Themes */
+        /* Light Theme (White Background) */
+        .light {
+            --bg-primary: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.05);
+            --accent: #4CAF50; /* Green accent for light mode */
+            --accent-light: #81C784;
+            --accent-gradient: linear-gradient(135deg, #4CAF50, #81C784);
+            --sidebar-bg: linear-gradient(160deg, #f7f7f7, #e9e9e9); /* Slightly adjusted sidebar bg */
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --icon-color: #4CAF50;
+            --toggle-bg: #ffffff; /* Changed to white for light mode */
+            --glow: 0 0 15px rgba(76, 175, 80, 0.3);
+            --particles-color: #4CAF50; /* Green particles */
+            --sidebar-nav-item-hover-bg: rgba(76, 175, 80, 0.15); /* New for light theme nav hover */
+            --sidebar-nav-item-active-bg: rgba(76, 175, 80, 0.25); /* New for light theme nav active */
+            --sidebar-nav-item-active-border: #4CAF50; /* New for light theme nav active */
+            --ai-assistant-bg: rgba(240, 240, 240, 0.8);
+            --message-idea-bg: #e9f5e9;
+            --message-idea-border: #c8e6c9;
+            --message-idea-text: #388e3c;
+            --message-idea-hover-bg: #d7edd7;
+            --success-bg: #e8f5e9;
+            --success-border: #c8e6c9;
+            --success-text: #2e7d32;
+            --error-bg: #ffebee;
+            --error-border: #ffcdd2;
+            --error-text: #c62828;
+        }
+
+        /* Dark Theme (Black Background - Keeping Horror Pink Accents) */
+        .dark {
+            --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            --text-primary: #e6e6e6;
+            --text-secondary: #b0b0b0;
+            --card-bg: rgba(10, 10, 10, 0.9);
+            --card-border: rgba(255, 0, 122, 0.4);
+            --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 0, 122, 0.3);
+            --accent: #ff007a; /* Horror pink accent for dark mode */
+            --accent-light: #ff4da6;
+            --accent-gradient: linear-gradient(135deg, #ff007a, #ff4da6);
+            --sidebar-bg: linear-gradient(160deg, #1f1f1f, #121212); /* Slightly adjusted sidebar bg */
+            --input-bg: rgba(10, 10, 10, 0.8);
+            --icon-color: #ff4da6;
+            --toggle-bg: #000000; /* Changed to black for dark mode */
+            --glow: 0 0 20px rgba(255, 0, 122, 0.6);
+            --particles-color: #ff007a; /* Pink particles */
+            --sidebar-nav-item-hover-bg: rgba(255, 0, 122, 0.15); /* New for dark theme nav hover */
+            --sidebar-nav-item-active-bg: rgba(255, 0, 122, 0.25); /* New for dark theme nav active */
+            --sidebar-nav-item-active-border: #ff007a; /* New for dark theme nav active */
+            --ai-assistant-bg: rgba(25, 25, 25, 0.8);
+            --message-idea-bg: #4a0e2e;
+            --message-idea-border: #6b1543;
+            --message-idea-text: #ff80bf;
+            --message-idea-hover-bg: #5e113a;
+            --success-bg: #1b5e20;
+            --success-border: #388e3c;
+            --success-text: #a5d6a7;
+            --error-bg: #b71c1c;
+            --error-border: #d32f2f;
+            --error-text: #ffcdd2;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+        }
+
+        .mode-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 80px;
+            height: 36px;
+            border-radius: 50px;
+            background: var(--toggle-bg);
+            box-shadow: var(--glow);
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s, transform 0.3s;
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.5; }
+        }
+
+        .mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px var(--glow);
+        }
+
+        .toggle-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glow);
+        }
+
+        .light .toggle-circle { left: 6px; background: var(--accent); }
+        .dark .toggle-circle { left: 46px; background: var(--accent); }
+        .toggle-icon { position: absolute; color: #fff; font-size: 16px; transition: opacity 0.3s ease; }
+        .sun-icon { left: 12px; }
+        .moon-icon { right: 12px; }
+        .light .moon-icon, .dark .sun-icon { opacity: 0; }
+        .light .sun-icon, .dark .moon-icon { opacity: 1; }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1300px;
+            margin: 90px auto 50px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            perspective: 1200px;
+        }
+
+        .sidebar {
+            width: 320px;
+            padding: 35px 25px;
+            background: var(--sidebar-bg);
+            color: var(--text-primary);
+            flex-shrink: 0;
+            border-radius: 28px;
+            box-shadow: var(--card-shadow), 0 0 10px rgba(0,0,0,0.05);
+            transition: background 0.6s, transform 0.4s ease-out, box-shadow 0.6s;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+            transform-style: preserve-3d;
+            border: 1px solid var(--card-border);
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, var(--accent) 0.05, rgba(0, 0, 0, 0.7) 80%);
+            transform: rotate(30deg);
+            z-index: -1;
+            opacity: 0.08;
+            transition: opacity 0.5s;
+        }
+        .sidebar:hover::before { opacity: 0.15; }
+        .sidebar:hover {
+            transform: translateY(-10px) translateZ(20px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2), var(--glow);
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            background: linear-gradient(45deg, var(--accent-light), var(--accent));
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1), var(--glow);
+            display: flex; /* For centering placeholder image if used */
+            align-items: center; /* For centering placeholder image if used */
+            justify-content: center; /* For centering placeholder image if used */
+        }
+        .profile-img img { /* Style for actual image if you add one */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-header h1 {
+            font-size: 2.2rem; letter-spacing: 1.5px; margin-bottom: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, var(--accent), var(--text-primary) 70%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .sidebar-header h2 {
+            font-size: 1.1rem; font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: 5px; letter-spacing: 2px;
+        }
+
+        .sidebar nav ul { list-style: none; margin-top: 25px; padding: 0; }
+        .sidebar nav ul li { margin-bottom: 10px; }
+        .sidebar nav ul li a {
+            display: flex; align-items: center;
+            padding: 15px 20px; border-radius: 12px;
+            color: var(--text-primary); text-decoration: none;
+            font-size: 1.05rem; font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+            position: relative; overflow: hidden; z-index: 1;
+            border-left: 4px solid transparent;
+        }
+        .sidebar nav ul li a:hover {
+            background-color: var(--sidebar-nav-item-hover-bg);
+            color: var(--accent);
+            transform: translateX(5px);
+            border-left-color: var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .sidebar nav ul li a.active {
+            background-color: var(--sidebar-nav-item-active-bg);
+            color: var(--accent); font-weight: 600;
+            border-left-color: var(--sidebar-nav-item-active-border);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05), 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .sidebar nav ul li a .icon {
+            margin-right: 18px; font-size: 1.35rem;
+            min-width: 28px; text-align: center;
+            color: var(--icon-color);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .sidebar nav ul li a:hover .icon, .sidebar nav ul li a.active .icon {
+            color: var(--accent);
+        }
+        .sidebar nav ul li a:hover .icon { transform: scale(1.1); }
+
+        .main {
+            flex: 1; padding: 0 50px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 25px; padding: 50px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(15px);
+            max-width: 650px; width: 100%;
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+            position: relative; overflow: hidden;
+            transform-style: preserve-3d;
+            animation: flicker 3s infinite alternate;
+        }
+        .contact-card::before {
+            content: ''; position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, var(--accent) 0.05, rgba(0, 0, 0, 0.7) 70%);
+            z-index: -1; opacity: 0.1;
+        }
+        .contact-card:hover {
+            transform: translateY(-10px) scale(1.02) translateZ(20px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2), var(--glow);
+        }
+        .contact-card h1 {
+            text-align: center; margin-bottom: 30px; /* Reduced margin */
+            font-size: 2.5rem; font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            position: relative; padding-bottom: 20px;
+            animation: glitchText 2.5s infinite;
+        }
+        .contact-card h1::after {
+            content: ''; position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100px; height: 5px;
+            background: var(--accent-gradient);
+            border-radius: 3px; box-shadow: var(--glow);
+        }
+
+        /* AI Message Assistant Styles */
+        .ai-message-assistant {
+            background-color: var(--ai-assistant-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid var(--card-border);
+        }
+        .ai-message-assistant h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .ai-message-assistant .form-group {
+            margin-bottom: 15px;
+        }
+        #generateMessageIdeasBtn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        #generateMessageIdeasBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--glow);
+        }
+        #ideasLoadingIndicator {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+        #messageIdeasContainer {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message-idea {
+            background-color: var(--message-idea-bg);
+            border: 1px solid var(--message-idea-border);
+            color: var(--message-idea-text);
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .message-idea:hover {
+            background-color: var(--message-idea-hover-bg);
+            transform: translateY(-2px);
+        }
+
+        .form-group { position: relative; margin-bottom: 30px; } /* Adjusted margin slightly */
+        .form-label {
+            position: absolute; top: 20px; left: 55px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none; font-size: 1.1rem;
+        }
+        .form-input {
+            width: 100%; padding: 22px 22px 22px 55px;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+            font-size: 1.1rem; background: var(--input-bg);
+            transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+            color: var(--text-primary);
+        }
+        .form-input:focus {
+            outline: none; border-color: var(--accent);
+            box-shadow: var(--glow);
+        }
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: -15px; left: 45px;
+            background: var(--card-bg);
+            padding: 0 10px; font-size: 0.9rem;
+            color: var(--accent); border-radius: 4px;
+        }
+        .form-icon {
+            position: absolute; left: 22px; top: 50%;
+            transform: translateY(-50%);
+            color: var(--icon-color); font-size: 1.3rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .form-input:focus ~ .form-icon {
+            color: var(--accent);
+            transform: translateY(-50%) scale(1.2);
+        }
+        textarea.form-input { min-height: 150px; resize: vertical; } /* Reduced min-height slightly */
+
+        .checkbox-container { display: flex; align-items: center; margin: 25px 0; } /* Adjusted margin */
+        .checkbox-container input {
+            width: 22px; height: 22px;
+            margin-right: 15px;
+            accent-color: var(--accent); cursor: pointer;
+        }
+        .checkbox-container label { color: var(--text-primary); font-size: 1.1rem; cursor: pointer; }
+
+        #submitBtn {
+            width: 100%; padding: 18px;
+            background: var(--accent-gradient); color: white;
+            border: none; border-radius: 15px;
+            font-size: 1.2rem; font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; overflow: hidden;
+            box-shadow: var(--glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        #submitBtn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px var(--glow); }
+        #submitBtn:active { transform: translateY(1px); }
+        #submitBtn::after {
+            content: ''; position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        #submitBtn:hover::after { left: 100%; }
+
+        .go-home {
+            display: block; margin: 50px auto 0;
+            padding: 16px 40px;
+            background: var(--accent-gradient); color: white;
+            border: none; border-radius: 15px;
+            font-size: 1.1rem; font-weight: 600;
+            text-align: center; text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 250px; position: relative;
+            overflow: hidden; z-index: 10;
+            box-shadow: var(--glow);
+        }
+        .go-home:hover { transform: translateY(-5px); box-shadow: 0 10px 25px var(--glow); }
+        .go-home:active { transform: translateY(1px); }
+
+        .footer {
+            text-align: center; padding: 30px 0;
+            color: var(--text-secondary); font-size: 1rem;
+            margin-top: auto; position: relative; z-index: 10;
+            background: var(--card-bg); backdrop-filter: blur(10px);
+        }
+
+        /* Success Toast Notification */
+        .toast {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 20px 25px;
+            background: var(--success-bg);
+            color: var(--success-text);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 2000;
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            border: 1px solid var(--success-border);
+            max-width: 400px;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.error {
+            background: var(--error-bg);
+            color: var(--error-text);
+            border-color: var(--error-border);
+        }
+        
+        .toast-icon {
+            font-size: 1.8rem;
+        }
+        
+        .toast-content {
+            flex: 1;
+        }
+        
+        .toast-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .toast-message {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: inherit;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            padding: 5px;
+        }
+        
+        .toast-close:hover {
+            opacity: 1;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); }
+            to { transform: translateX(150%); }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 992px) {
+            .container { flex-direction: column; margin: 70px auto 40px; }
+            .sidebar { width: 100%; max-width: 550px; margin: 0 auto 50px; border-radius: 20px; }
+            .main { padding: 0; }
+        }
+        @media (max-width: 768px) {
+            .container { width: 95%; }
+            .contact-card { padding: 35px; }
+            .contact-card h1 { font-size: 2.2rem; }
+            .mode-toggle { top: 25px; right: 25px; }
+            .sidebar { padding: 30px 20px; }
+            .sidebar nav ul li a { padding: 12px 15px; }
+            .ai-message-assistant { padding: 15px; }
+            .ai-message-assistant h3 { font-size: 1.15rem; }
+            .toast {
+                top: 20px;
+                right: 20px;
+                left: 20px;
+                max-width: none;
+            }
+        }
+        @media (max-width: 480px) {
+            .contact-card { padding: 30px 20px; } /* Adjusted padding */
+            .contact-card h1 { font-size: 1.9rem; }
+            .form-input { padding: 18px 18px 18px 50px; }
+            .form-label { left: 50px; }
+            .form-icon { left: 18px; }
+            .go-home { padding: 14px 30px; font-size: 1rem; }
+            .sidebar { padding: 25px 15px; border-radius: 15px; }
+            .profile-img { width: 100px; height: 100px; }
+            .sidebar-header h1 { font-size: 1.8rem; }
+            .sidebar-header h2 { font-size: 0.9rem; }
+            .sidebar nav ul li a { padding: 10px 12px; font-size: 0.95rem; }
+            .sidebar nav ul li a .icon { font-size: 1.2rem; margin-right: 12px; }
+            .ai-message-assistant { padding: 15px; }
+            .ai-message-assistant h3 { font-size: 1.1rem; margin-bottom: 10px;}
+            #generateMessageIdeasBtn { font-size: 0.9rem; padding: 10px;}
+            .message-idea { font-size: 0.9rem; padding: 10px;}
+            textarea.form-input { min-height: 120px; }
+            .toast {
+                padding: 15px 20px;
+                top: 15px;
+                right: 15px;
+                left: 15px;
+            }
+            .toast-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, -40%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes fadeOutScale {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -40%) scale(0.9); }
+        }
+    </style>
+</head>
+<body class="light">
+    <div id="particles-js"></div>
+    
+    <div class="mode-toggle" onclick="toggleMode()">
+        <div class="toggle-circle"></div>
+        <i class="toggle-icon sun-icon fas fa-sun"></i>
+        <i class="toggle-icon moon-icon fas fa-moon"></i>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-container">
+                <div class="profile-img">
+                     <img src="https://placehold.co/120x120/E0E0E0/777?text=Profile" alt="Profile Placeholder"
+                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/CCCCCC/777?text=Img+Error';"
+                     >
+                </div>
+                <div class="sidebar-header">
+                    <h1>Jawad</h1>
+                    <h2>Full Stack Developer</h2>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><span class="icon">🏠</span> Home</a></li>
+                    <li><a href="myintro.html"><span class="icon">👨‍💻</span> My Intro</a></li>
+                    <li><a href="services.html"><span class="icon">⚙️</span> Services</a></li>
+                    <li><a href="cv.html"><span class="icon">📄</span> CV</a></li>
+                    <li><a href="blog.html"><span class="icon">📝</span> Blog</a></li>
+                    <li><a href="contactme.html" class="active"><span class="icon">📞</span> Contact Me</a></li>
+                    <li><a href="myProject.html" class="nav-item"><span class="icon">📽</span>MY Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="main">
+            <div class="contact-card">
+                <form id="contactForm">
+                    <h1>Connect with Me</h1>
+
+                    <div class="ai-message-assistant">
+                        <h3>✨ Smart Message Assistant</h3>
+                        <div class="form-group">
+                            <i class="form-icon fas fa-lightbulb"></i>
+                            <input type="text" class="form-input" id="messageTopicInput" placeholder=" ">
+                            <label for="messageTopicInput" class="form-label">Briefly, what's your query about?</label>
+                        </div>
+                        <button type="button" id="generateMessageIdeasBtn">Get Message Ideas</button>
+                        <div id="ideasLoadingIndicator">Generating ideas... <i class="fas fa-spinner fa-spin"></i></div>
+                        <div id="messageIdeasContainer">
+                            </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="form-icon fas fa-user"></i>
+                        <input type="text" class="form-input" id="clintInputName1" placeholder=" " required>
+                        <label for="clintInputName1" class="form-label">Your Full Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="form-icon fas fa-envelope"></i>
+                        <input type="email" class="form-input" id="clintInputEmail1" placeholder=" " required>
+                        <label for="clintInputEmail1" class="form-label">Email Address</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="form-icon fas fa-phone-alt"></i>
+                        <input type="tel" class="form-input" id="clinetphone" placeholder=" ">
+                        <label for="clinetphone" class="form-label">Phone Number (Optional)</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <i class="form-icon fas fa-comment-dots"></i>
+                        <textarea class="form-input" id="clintInputEnquiry" placeholder=" " required></textarea>
+                        <label for="clintInputEnquiry" class="form-label">Your Message</label>
+                    </div>
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="isclient">
+                        <label for="isclient">I want you to work on a project with me</label>
+                    </div>
+                    
+                    <button type="submit" id="submitBtn">
+                        <span id="submitText">Send Message</span>
+                        <span id="submitIcon"><i class="fas fa-paper-plane"></i></span>
+                        <div class="spinner" id="submitSpinner"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <a href="index.html" class="go-home">Back to Home</a>
+    
+    <div class="footer">
+        <p>© 2023 Jawad. All Rights Reserved | Crafted with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Function to update particles.js color
+        function updateParticlesColor(color) {
+            if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS && window.pJSDom[0].pJS.particles) {
+                if (window.pJSDom[0].pJS.particles.array && window.pJSDom[0].pJS.particles.array.length > 0) {
+                    window.pJSDom[0].pJS.particles.array.forEach(p => {
+                        if (p.color) { p.color.value = color; }
+                        else { p.color = { value: color }; }
+                    });
+                }
+                window.pJSDom[0].pJS.fn.particlesDraw();
+            }
+        }
+
+        // Theme toggle function
+        function toggleMode() {
+            const body = document.body;
+            const isCurrentlyLight = body.classList.contains('light');
+            
+            if (isCurrentlyLight) {
+                body.classList.remove('light'); body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark'); body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            }
+            const computedStyle = getComputedStyle(document.body);
+            const particlesColor = computedStyle.getPropertyValue('--particles-color').trim();
+            updateParticlesColor(particlesColor);
+        }
+
+        // Create toast notification
+        function showToast(message, isError = false) {
+            // Remove existing toasts
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${isError ? 'error' : ''}`;
+            
+            const icon = isError ? 'exclamation-triangle' : 'check-circle';
+            const title = isError ? 'Error' : 'Success';
+            
+            toast.innerHTML = `
+                <i class="toast-icon fas fa-${icon}"></i>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) toast.parentNode.removeChild(toast);
+                }, 500);
+            }, 5000);
+            
+            // Close button functionality
+            const closeBtn = toast.querySelector('.toast-close');
+            closeBtn.addEventListener('click', () => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) toast.parentNode.removeChild(toast);
+                }, 500);
+            });
+        }
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form elements
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitIcon = document.getElementById('submitIcon');
+            const spinner = document.getElementById('submitSpinner');
+            
+            // Show loading state
+            submitText.textContent = 'Sending...';
+            submitIcon.style.display = 'none';
+            spinner.style.display = 'block';
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('clintInputName1').value.trim(),
+                email: document.getElementById('clintInputEmail1').value.trim(),
+                phone: document.getElementById('clinetphone').value.trim(),
+                message: document.getElementById('clintInputEnquiry').value.trim(),
+                isProject: document.getElementById('isclient').checked
+            };
+            
+            // Basic validation
+            if (!formData.name || !formData.email || !formData.message) {
+                showToast('Please fill in all required fields', true);
+                
+                // Reset button state
+                submitText.textContent = 'Send Message';
+                submitIcon.style.display = 'inline';
+                spinner.style.display = 'none';
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            try {
+                // Simulate backend submission (replace with your actual backend URL)
+                // In a real implementation, you would use:
+                // const response = await fetch('https://your-backend.com/submit', {
+                //   method: 'POST',
+                //   headers: { 'Content-Type': 'application/json' },
+                //   body: JSON.stringify(formData)
+                // });
+                
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Simulate success response
+                const success = true; // In real implementation, check response.ok
+                
+                if (success) {
+                    // Show success toast
+                    showToast('✅ Thank you for contacting me. MJ Abbasi will get back to you as soon as possible.');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Reset floating labels
+                    document.querySelectorAll('.form-input').forEach(input => {
+                        const event = new Event('input', { bubbles: true });
+                        input.dispatchEvent(event);
+                    });
+                    
+                    // Clear AI assistant fields
+                    const messageTopicInput = document.getElementById('messageTopicInput');
+                    if(messageTopicInput) messageTopicInput.value = '';
+                    const ideasContainer = document.getElementById('messageIdeasContainer');
+                    if(ideasContainer) ideasContainer.innerHTML = '';
+                } else {
+                    // Simulate error response
+                    throw new Error('Failed to send message. Please try again later.');
+                }
+            } catch (error) {
+                // Show error toast
+                showToast(error.message || 'There was an error sending your message. Please try again later.', true);
+            } finally {
+                // Reset button state
+                submitText.textContent = 'Send Message';
+                submitIcon.style.display = 'inline';
+                spinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Initial theme setup on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+
+            if (savedTheme === 'dark') {
+                body.classList.remove('light'); body.classList.add('dark');
+            } else {
+                body.classList.remove('dark'); body.classList.add('light');
+            }
+            
+            const initialParticlesColor = getComputedStyle(body).getPropertyValue('--particles-color').trim();
+            particlesJS("particles-js", { /* particles.js config */
+                particles: {
+                    number: { value: 60, density: { enable: true, value_area: 800 } },
+                    color: { value: initialParticlesColor }, 
+                    shape: { type: "circle" },
+                    opacity: { value: 0.4, random: true },
+                    size: { value: 4, random: true },
+                    line_linked: { enable: false },
+                    move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true }
+                }
+            });
+
+            const currentPage = window.location.pathname.split("/").pop() || "index.html"; // Default to index.html if path is empty
+            const navLinks = document.querySelectorAll('.sidebar nav ul li a');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href').split("/").pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // AI Message Assistant Logic
+            const generateIdeasBtn = document.getElementById('generateMessageIdeasBtn');
+            const messageTopicInput = document.getElementById('messageTopicInput');
+            const ideasContainer = document.getElementById('messageIdeasContainer');
+            const mainMessageTextarea = document.getElementById('clintInputEnquiry');
+            const ideasLoadingIndicator = document.getElementById('ideasLoadingIndicator');
+            const clientNameInput = document.getElementById('clintInputName1');
+            const projectCheckbox = document.getElementById('isclient');
+
+            if (generateIdeasBtn) {
+                generateIdeasBtn.addEventListener('click', async () => {
+                    const topic = messageTopicInput.value.trim();
+                    const clientName = clientNameInput.value.trim() || "The user";
+                    const wantsProject = projectCheckbox.checked;
+                    const projectInterestText = wantsProject ? "interested in discussing a project" : "making a general inquiry";
+
+                    if (!topic) {
+                        // Simple inline message instead of alert
+                        ideasContainer.innerHTML = '<p style="color: var(--accent); text-align: center;">Please enter a topic for your message.</p>';
+                        setTimeout(() => { ideasContainer.innerHTML = ''; }, 3000);
+                        return;
+                    }
+
+                    ideasLoadingIndicator.style.display = 'block';
+                    ideasContainer.innerHTML = ''; // Clear previous ideas
+
+                    const prompt = `My name is ${clientName}. I am ${projectInterestText}. My query is about: "${topic}". Please generate 3 concise and professional message opening suggestions or key points I can include in my message to Jawad, a Full Stack Developer. Each suggestion should be distinct and under 30 words.`;
+                    
+                    let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                    const payload = {
+                        contents: chatHistory,
+                        generationConfig: {
+                            responseMimeType: "application/json",
+                            responseSchema: {
+                                type: "OBJECT",
+                                properties: {
+                                    "suggestions": {
+                                        type: "ARRAY",
+                                        items: { type: "STRING" }
+                                    }
+                                },
+                                required: ["suggestions"]
+                            }
+                        }
+                    };
+                    const apiKey = ""; // API key will be injected by the environment
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            console.error("API Error:", errorData);
+                            throw new Error(`API request failed with status ${response.status}: ${errorData?.error?.message || 'Unknown error'}`);
+                        }
+
+                        const result = await response.json();
+                        
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            
+                            const rawJsonText = result.candidates[0].content.parts[0].text;
+                            const parsedJson = JSON.parse(rawJsonText); // Parse the text part which contains the JSON string
+
+                            if (parsedJson.suggestions && Array.isArray(parsedJson.suggestions)) {
+                                parsedJson.suggestions.forEach(suggestionText => {
+                                    const ideaElement = document.createElement('div');
+                                    ideaElement.classList.add('message-idea');
+                                    ideaElement.textContent = suggestionText;
+                                    ideaElement.onclick = () => {
+                                        mainMessageTextarea.value = suggestionText;
+                                        // Trigger input event for label animation if any
+                                        mainMessageTextarea.dispatchEvent(new Event('input', { bubbles: true }));
+                                    };
+                                    ideasContainer.appendChild(ideaElement);
+                                });
+                            } else {
+                                ideasContainer.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No suggestions received in the expected format.</p>';
+                            }
+                        } else {
+                            ideasContainer.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Could not generate suggestions at this time. The response structure was unexpected.</p>';
+                            console.error("Unexpected API response structure:", result);
+                        }
+                    } catch (error) {
+                        console.error('Error calling Gemini API:', error);
+                        ideasContainer.innerHTML = `<p style="color: var(--accent); text-align: center;">Error: ${error.message}. Check console for details.</p>`;
+                    } finally {
+                        ideasLoadingIndicator.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
