@@ -42,3 +42,25 @@ Crafted with ❤️ using vanilla HTML, CSS, and JS — fully responsive, dark/l
 
 ## 📁 Folder Structure
 
+
+---
+
+## 💌 Contact
+
+Want to work together, hire me, or say hello?
+
+📬 Visit my contact section:  
+🔗 [https://jawadabbasi14.github.io/Mj-Porfolio/#contact](https://jawadabbasi14.github.io/Mj-Porfolio/#contact)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — you're free to use, modify, and share it with credit.
+
+---
+
+> 👑 Designed & Developed with ❤️ by **MJ Abbasi**  
+> © 2024 All Rights Reserved
+
+
