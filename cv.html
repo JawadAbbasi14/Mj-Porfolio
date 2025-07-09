@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawad Abbasi - Python Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* -------------------------------------- */
+        /* CSS Variables for Theming & Consistency */
+        :root {
+            --color-light-bg: #f0f4f8;
+            --color-light-gradient-1: #f0f4f8;
+            --color-light-gradient-2: #d9e2ec;
+            --color-dark-bg: #000000;
+            --color-dark-gradient-1: #0a0a0a;
+            --color-dark-gradient-2: #000000;
+            --color-light-text: #333;
+            --color-dark-text: #e0e0e0;
+            --color-light-border: #d9e2ec;
+            --color-dark-border: #444a6b;
+            --color-indigo-light: #4f46e5;
+            --color-indigo-dark: #818cf8;
+            --color-accent: #34eb5e;
+            --color-dark-pink: #880e4f;
+            --font-primary: 'Inter', sans-serif;
+            --font-heading: 'Raleway', sans-serif;
+            --transition-fast: 0.3s ease;
+            --transition-slow: 0.6s ease;
+            --max-width: 800px;
+            --spacing-base: 1rem;
+            --text-size-small: 0.875rem;
+            --text-size-base: 1rem;
+            --text-size-large: 1.25rem;
+            --sidebar-bg: rgba(255,255,255,0.95);
+            --sidebar-dark-bg: rgba(10,10,10,0.95);
+            --sidebar-text: #333;
+            --sidebar-dark-text: #e0e0e0;
+            --sidebar-width: 280px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* -------------------------------------- */
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            transition: background var(--transition-slow), color var(--transition-slow);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--color-light-gradient-1), var(--color-light-gradient-2));
+            color: var(--color-light-text);
+            line-height: 1.6;
+        }
+
+        body.dark-active {
+            background: linear-gradient(135deg, var(--color-dark-pink), var(--color-dark-gradient-2));
+            color: var(--color-dark-text);
+        }
+
+        /* -------------------------------------- */
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            padding: 2rem 1rem;
+            border-right: 1px solid var(--color-light-border);
+            transition: all var(--transition-slow);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        body.dark-active .sidebar {
+            background: var(--sidebar-dark-bg);
+            border-color: var(--color-dark-border);
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-light-border);
+        }
+
+        body.dark-active .sidebar-header {
+            border-color: var(--color-dark-border);
+        }
+
+        .sidebar-name {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--color-indigo-light);
+            background: linear-gradient(135deg, var(--color-indigo-light), var(--color-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        body.dark-active .sidebar-name {
+            color: var(--color-indigo-dark);
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-active .sidebar-title {
+            color: #aaa;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            flex: 1;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.8rem;
+            transition: transform var(--transition-fast);
+        }
+
+        .sidebar li:hover {
+            transform: translateX(5px);
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            color: var(--sidebar-text);
+            display: flex;
+            align-items: center;
+            transition: all var(--transition-fast);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            gap: 1rem;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--color-indigo-light);
+        }
+
+        .sidebar a .emoji {
+            font-size: 1.4rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        body.dark-active .sidebar a {
+            color: var(--sidebar-dark-text);
+        }
+
+        body.dark-active .sidebar a:hover,
+        body.dark-active .sidebar a.active {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--color-indigo-dark);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-light-border);
+        }
+
+        body.dark-active .social-links {
+            border-color: var(--color-dark-border);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--color-indigo-light);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .social-link:hover {
+            background: var(--color-indigo-light);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        body.dark-active .social-link {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--color-indigo-dark);
+        }
+
+        body.dark-active .social-link:hover {
+            background: var(--color-indigo-dark);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 2rem;
+            max-width: calc(100% - var(--sidebar-width));
+            width: 100%;
+        }
+
+        /* CV Container */
+        .cv-container {
+            max-width: var(--max-width);
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: var(--shadow);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 0 auto;
+            transition: all var(--transition-slow);
+        }
+
+        body.dark-active .cv-container {
+            background-color: #121212;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+        }
+
+        /* Theme Switch Button */
+        .switch-mode {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            width: 60px;
+            height: 30px;
+            background: #333;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: background var(--transition-fast);
+        }
+
+        .switch-mode.light-active {
+            background: #ccc;
+        }
+
+        .switch-mode.dark-active {
+            background: #444;
+        }
+
+        .toggle-circle {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform var(--transition-fast), background var(--transition-fast);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .switch-mode.dark-active .toggle-circle {
+            transform: translateX(30px);
+            background: var(--color-dark-pink);
+            color: white;
+        }
+
+        .switch-mode.light-active .toggle-circle {
+            transform: translateX(0);
+            background: #90caf9;
+            color: black;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--color-light-border);
+            transition: border-color var(--transition-slow);
+            position: relative;
+        }
+
+        body.dark-active header {
+            border-color: var(--color-dark-border);
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--color-indigo-light), var(--color-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        header p.subtitle {
+            font-size: 1.4rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        body.dark-active header p.subtitle {
+            color: #ccc;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        body.dark-active .contact-item {
+            color: #aaa;
+        }
+
+        .contact-item .icon {
+            color: var(--color-indigo-light);
+            font-size: 1.2rem;
+        }
+
+        body.dark-active .contact-item .icon {
+            color: var(--color-indigo-dark);
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: rgba(249, 250, 251, 0.7);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-active section {
+            background: rgba(30, 30, 30, 0.3);
+        }
+
+        section:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            transition: all var(--transition-fast);
+        }
+
+        body.dark-active section:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:nth-child(5) { animation-delay: 0.4s; }
+        section:nth-child(6) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--color-light-border);
+            transition: color var(--transition-fast), border-color var(--transition-fast);
+            color: var(--color-indigo-light);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        section h2 .icon {
+            font-size: 1.6rem;
+        }
+
+        body.dark-active section h2 {
+            color: var(--color-indigo-dark);
+            border-color: var(--color-dark-border);
+        }
+
+        /* Content Styles */
+        .content-item {
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--color-light-border);
+            transition: border-color var(--transition-fast);
+        }
+
+        body.dark-active .content-item {
+            border-color: var(--color-dark-border);
+        }
+
+        .content-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border: none;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .content-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-indigo-light);
+        }
+
+        body.dark-active .content-title {
+            color: var(--color-indigo-dark);
+        }
+
+        .content-subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-active .content-subtitle {
+            color: #bbb;
+        }
+
+        .content-date {
+            font-size: 0.9rem;
+            color: #777;
+            background: rgba(79, 70, 229, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        body.dark-active .content-date {
+            color: #ddd;
+            background: rgba(129, 140, 248, 0.15);
+        }
+
+        .content-description {
+            margin-top: 0.8rem;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        body.dark-active .content-description {
+            color: #ccc;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--color-indigo-light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+
+        .skill-tag:hover {
+            background: var(--color-indigo-light);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        body.dark-active .skill-tag {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--color-indigo-dark);
+        }
+
+        body.dark-active .skill-tag:hover {
+            background: var(--color-indigo-dark);
+            color: white;
+        }
+
+        /* Certificate Styles */
+        .certificate-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .certificate-preview {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            position: relative;
+            border: 1px solid var(--color-light-border);
+        }
+
+        body.dark-active .certificate-preview {
+            background: linear-gradient(45deg, #222, #333);
+            border-color: var(--color-dark-border);
+        }
+
+        .certificate-content {
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificate-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-indigo-light);
+            font-family: var(--font-heading);
+        }
+
+        body.dark-active .certificate-title {
+            color: var(--color-indigo-dark);
+        }
+
+        .certificate-subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        body.dark-active .certificate-subtitle {
+            color: #bbb;
+        }
+
+        .recipient-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 2rem 0;
+            color: var(--color-indigo-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        body.dark-active .recipient-name {
+            color: var(--color-indigo-dark);
+        }
+
+        .certificate-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .certificate-details {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed var(--color-light-border);
+        }
+
+        body.dark-active .certificate-details {
+            border-top-color: var(--color-dark-border);
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-active .detail-label {
+            color: #aaa;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-indigo-light);
+        }
+
+        body.dark-active .detail-value {
+            color: var(--color-indigo-dark);
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: var(--color-indigo-light);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #4338ca;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        body.dark-active .download-btn {
+            background: var(--color-indigo-dark);
+            box-shadow: 0 4px 10px rgba(129, 140, 248, 0.3);
+        }
+
+        body.dark-active .download-btn:hover {
+            background: #6366f1;
+            box-shadow: 0 6px 15px rgba(129, 140, 248, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-light-border);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        body.dark-active footer {
+            border-color: var(--color-dark-border);
+            color: #aaa;
+        }
+
+        /* -------------------------------------- */
+        /* Enhanced Responsive Styles */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                padding: 1.5rem 0.5rem;
+            }
+            .sidebar-header {
+                padding: 0 0.5rem 1rem;
+            }
+            .sidebar-name, .sidebar-title, .text {
+                display: none;
+            }
+            .sidebar a {
+                justify-content: center;
+                padding: 0.8rem;
+            }
+            .sidebar a .emoji {
+                font-size: 1.4rem;
+                width: auto;
+            }
+            .main-content {
+                margin-left: 80px;
+                padding: 2rem 1rem;
+            }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-container {
+                padding: 1.5rem;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+            
+            header p.subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+            }
+            
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .content-title {
+                font-size: 1.1rem;
+            }
+
+            .content-subtitle {
+                font-size: 1rem;
+            }
+
+            .certificate-title {
+                font-size: 1.8rem;
+            }
+
+            .recipient-name {
+                font-size: 2rem;
+            }
+
+            .certificate-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 60px;
+            }
+            
+            .main-content {
+                margin-left: 60px;
+                padding: 1.5rem 0.8rem;
+            }
+            
+            .switch-mode {
+                top: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 26px;
+            }
+            
+            .toggle-circle {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+            
+            .switch-mode.dark-active .toggle-circle {
+                transform: translateX(24px);
+            }
+            
+            .cv-container {
+                padding: 1.2rem;
+                border-radius: 12px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .content-date {
+                align-self: flex-start;
+                margin-top: 0.3rem;
+            }
+            
+            .content-title {
+                font-size: 1.1rem;
+            }
+            
+            .content-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .content-description {
+                font-size: 0.9rem;
+            }
+            
+            .skill-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .certificate-title {
+                font-size: 1.5rem;
+            }
+
+            .certificate-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .recipient-name {
+                font-size: 1.6rem;
+            }
+
+            .certificate-text {
+                font-size: 0.9rem;
+            }
+
+            .certificate-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .main-content {
+                padding: 1.2rem 0.5rem;
+            }
+            
+            .cv-container {
+                padding: 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
+            section {
+                padding: 1rem;
+            }
+            
+            section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .skills-container {
+                gap: 0.5rem;
+            }
+
+            .contact-item {
+                font-size: 0.9rem;
+            }
+
+            .contact-item .icon {
+                font-size: 1rem;
+            }
+
+            .certificate-title {
+                font-size: 1.3rem;
+            }
+
+            .certificate-subtitle {
+                font-size: 1rem;
+            }
+
+            .recipient-name {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body class="light-active">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-name">Jawad Abbasi</h2>
+            <p class="sidebar-title">Python Developer</p>
+        </div>
+        
+        <ul>
+            <li><a href="index.html"><span class="emoji">🏠</span> <span class="text">Home</span></a></li>
+            <li><a href="myintro.html"><span class="emoji">👨‍💻</span> <span class="text">My Intro</span></a></li>
+            <li><a href="services.html"><span class="emoji">⚙️</span> <span class="text">Services</span></a></li>
+            <li><a href="cv.html" class="active"><span class="emoji">📄</span> <span class="text">CV</span></a></li>
+            <li><a href="blog.html"><span class="emoji">📝</span> <span class="text">Blog</span></a></li>
+            <li><a href="contactme.html"><span class="emoji">📞</span> <span class="text">Contact Me</span></a></li>
+            <li><a href="myProject.html" class="nav-item"><span class="icon">📽</span>MY Projects</a></li>
+        </ul>
+        
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="switch-mode light-active">
+            <div class="toggle-circle"><i class="fas fa-sun"></i></div>
+        </div>
+        
+        <div class="cv-container">
+            <header>
+                <h1>JAWAD ABBASI</h1>
+                <p class="subtitle">Python Developer & AI Enthusiast</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope icon"></i>
+                        <span>jawadabbasi1107@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone icon"></i>
+                        <span>+92 3435256963</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt icon"></i>
+                        <span>Abbottabad, KPK, Pakistan</span>
+                    </div>
+                </div>
+            </header>
+            
+            <section id="about">
+                <h2><i class="fas fa-user"></i> About Me</h2>
+                <div class="content-item">
+                    <p class="content-description">
+                        Passionate Python developer beginning my journey in the world of programming and AI. 
+                        Currently building my skills through hands-on projects and continuous learning. 
+                        Eager to contribute to innovative solutions and grow in the tech industry.
+                    </p>
+                    <p class="content-description">
+                        As a beginner, I'm focused on mastering core programming concepts and developing 
+                        practical applications. I thrive on solving problems and creating efficient, 
+                        user-friendly software solutions.
+                    </p>
+                </div>
+            </section>
+            
+            <section id="skills">
+                <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Core Programming</h3>
+                    <div class="skills-container">
+                        <div class="skill-tag">Python</div>
+                        <div class="skill-tag">HTML5/CSS3</div>
+                        <div class="skill-tag">JavaScript</div>
+                        <div class="skill-tag">SQL</div>
+                        <div class="skill-tag">Ai develpor</div>
+                    </div>
+                </div>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Frameworks & Tools</h3>
+                    <div class="skills-container">
+                        <div class="skill-tag">Django</div>
+                        <div class="skill-tag">Flask</div>
+                        <div class="skill-tag">Git/GitHub</div>
+                        <div class="skill-tag">VS Code</div>
+                    </div>
+                </div>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Learning Focus</h3>
+                    <div class="skills-container">
+                        <div class="skill-tag">Web Development</div>
+                        <div class="skill-tag">Data Analysis</div>
+                        <div class="skill-tag">API Development</div>
+                        <div class="skill-tag">AI Fundamentals</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="education">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                
+                <div class="content-item">
+                    <div class="content-header">
+                        <h3 class="content-title">BSc in Computer Science</h3>
+                        <div class="content-date">2020 - 2024</div>
+                    </div>
+                    <p class="content-subtitle">University of Abbottabad, KPK</p>
+                    <p class="content-description">
+                        Currently pursuing my degree with a focus on software development and AI fundamentals. 
+                        Coursework includes algorithms, data structures, web development, and database systems.
+                    </p>
+                </div>
+                
+                <div class="content-item">
+                    <div class="content-header">
+                        <h3 class="content-title">Python Programming Bootcamp</h3>
+                        <div class="content-date">2023</div>
+                    </div>
+                    <p class="content-subtitle">Online Certification Program</p>
+                    <p class="content-description">
+                        Completed an intensive 6-month program covering Python fundamentals, web development 
+                        with Django, and basic data analysis.
+                    </p>
+                </div>
+            </section>
+            
+            <section id="projects">
+                <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Personal Portfolio Website</h3>
+                    <p class="content-description">
+                        Designed and developed a responsive portfolio website using HTML, CSS, and JavaScript. 
+                        Implemented dark/light mode toggle and responsive navigation.
+                    </p>
+                </div>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Weather App with Python</h3>
+                    <p class="content-description">
+                        Created a command-line weather application that fetches real-time weather data using 
+                        API integration. Implemented error handling and user-friendly output formatting.
+                    </p>
+                </div>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Task Management System</h3>
+                    <p class="content-description">
+                        Developed a simple task management application using Python and SQLite. Features include 
+                        task creation, updating, deletion, and status tracking.
+                    </p>
+                </div>
+            </section>
+            
+            <section id="certifications">
+                <h2><i class="fas fa-award"></i> Certifications</h2>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Python for Everybody</h3>
+                    <p class="content-subtitle">University of Michigan, Coursera</p>
+                </div>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Web Development Fundamentals</h3>
+                    <p class="content-subtitle">freeCodeCamp</p>
+                </div>
+                
+                <div class="content-item">
+                    <h3 class="content-title">Introduction to AI</h3>
+                    <p class="content-subtitle">Google AI</p>
+                </div>
+            </section>
+            
+            <!-- New Certificate Section -->
+            <section id="certificate">
+                <h2><i class="fas fa-certificate"></i> Programming Certificate</h2>
+                <div class="content-item">
+                    <p class="content-description">
+                        I'm proud to present my programming certificate which demonstrates my proficiency in Python development and software engineering principles.
+                    </p>
+                    
+                    <div class="certificate-container">
+                        <div class="certificate-preview">
+                            <div class="certificate-content">
+                                <h3 class="certificate-title">Certificate of Achievement</h3>
+                                <p class="certificate-subtitle">Awarded for Excellence in Python Programming</p>
+                                <div class="recipient-name">Jawad Abbasi</div>
+                                <p class="certificate-text">
+                                    This certificate is awarded to Jawad Abbasi for successfully completing the Advanced Python Programming course and demonstrating exceptional skill in software development.
+                                </p>
+                                
+                                <div class="certificate-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Issued On</div>
+                                        <div class="detail-value">June 15, 2025</div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">Certificate ID</div>
+                                        <div class="detail-value">PAK-PY-2025-00784</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="Mr Jawad Abbasi (1).pdf" class="download-btn" download>
+                            <i class="fas fa-download"></i> Download Certificate
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <footer>
+                <p>© 2023 Jawad Abbasi. All rights reserved.</p>
+                <p>Abbottabad, KPK, Pakistan</p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle functionality
+        const body = document.body;
+        const themeToggle = document.querySelector('.switch-mode');
+        const toggleCircle = document.querySelector('.toggle-circle');
+        
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('light-active')) {
+                body.classList.remove('light-active');
+                body.classList.add('dark-active');
+                themeToggle.classList.remove('light-active');
+                themeToggle.classList.add('dark-active');
+                toggleCircle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.classList.remove('dark-active');
+                body.classList.add('light-active');
+                themeToggle.classList.remove('dark-active');
+                themeToggle.classList.add('light-active');
+                toggleCircle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+        
+        // Sidebar navigation
+        const sidebarLinks = document.querySelectorAll('.sidebar a');
+        
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Remove active class from all links
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
