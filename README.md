@@ -1,66 +1,54 @@
-# 🚀 MJ Abbasi – Developer Portfolio
+# 🚀 Jawad Abbasi - Portfolio Website
 
-[![Live Site](https://img.shields.io/badge/🔗%20Live-Site-blue?style=flat-square)](https://jawadabbasi14.github.io/Mj-Porfolio/)
-[![GitHub](https://img.shields.io/github/followers/jawadabbasi14?label=Follow&style=social)](https://github.com/jawadabbasi14)
-
-Welcome to the official portfolio of **MJ Abbasi** – a passionate full-stack developer focused on clean UI, real-world problem solving, and modern web technologies.  
-Crafted with ❤️ using vanilla HTML, CSS, and JS — fully responsive, dark/light mode, animated UI, and a smart contact experience.
+Welcome to my **personal portfolio website**!  
+This site represents my work, skills, and creativity as a tech enthusiast. It’s built with clean code and a modern layout — designed to work seamlessly across all devices. 👨‍💻✨
 
 ---
 
-## 📸 Live Preview
+## 🌐 Live Demo
 
-🔗 **[Click here to explore the live site →](https://jawadabbasi14.github.io/Mj-Porfolio/)**
-
----
-
-## ✨ Features
-
-- 🎨 Clean and Modern UI
-- 🌓 Dark/Light Mode Toggle
-- 📱 Fully Responsive Layout
-- 🧠 Smart Contact Form with Custom Message Handling
-- 📂 Project Showcase Section
-- 📄 CV / Resume Download
-- 🧑‍💻 About, Services, and Intro Sections
-- 🔒 No frameworks — Pure HTML, CSS, JS
-- 🌐 Hosted with GitHub Pages
+🔗 **Check it out here:**  
+👉 [Visit My Portfolio Website](https://jawadabbasi14.github.io/Mj-Porfolio/) 👈
 
 ---
 
-## 🛠️ Tech Stack
+## 📌 What's Inside?
 
-| Technology     | Role                         |
-|----------------|------------------------------|
-| `HTML5`        | Structure & Content          |
-| `CSS3`         | Styling & Layout             |
-| `Vanilla JS`   | Interactivity & Modals       |
-| `GitHub Pages` | Deployment Platform          |
-| `Toastify.js`  | Toast Notifications (optional) |
-
----
-
-## 📁 Folder Structure
-
+- 🙋‍♂️ Introductory section about me  
+- 🛠️ Clean & minimal Services section  
+- 💼 Highlighted Projects (static layout)  
+- 📬 Contact section with custom message toast  
+- 🌓 **Light/Dark Mode toggle**  
+- 📱 100% responsive design for mobile, tablet, and desktop  
 
 ---
 
-## 💌 Contact
+## 🖼️ Preview Screenshots
 
-Want to work together, hire me, or say hello?
+### 🌞 Light Mode
 
-📬 Visit my contact section:  
-🔗 [https://jawadabbasi14.github.io/Mj-Porfolio/#contact](https://jawadabbasi14.github.io/Mj-Porfolio/#contact)
+![Light Mode](litemode.png)
 
----
+### 🌙 Dark Mode
 
-## 📄 License
-
-This project is licensed under the **MIT License** — you're free to use, modify, and share it with credit.
+![Dark Mode](darkmode.png)
 
 ---
 
-> 👑 Designed & Developed with ❤️ by **MJ Abbasi**  
-> © 2024 All Rights Reserved
+## 📁 Project Structure
 
+This website is built using:
 
+- 🔤 **HTML5** – for the basic structure  
+- 🎨 **CSS3** – for styling and layout  
+- 📂 **Organized folders** – clean asset management  
+- 🧰 **Git & GitHub** – for version control and deployment  
+
+---
+
+## 🤝 Let's Connect!
+
+Thanks for visiting! Feel free to explore, fork, or share your feedback.  
+I’m always learning and building — this is just the beginning! 🚀💻
+
+> © 2024 — Built by **MJ Abbasi** with ❤️
