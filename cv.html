@@ -82,10 +82,12 @@
             border-right: 1px solid var(--color-light-border);
             transition: all var(--transition-slow);
             box-shadow: var(--shadow);
-            z-index: 100;
+            z-index: 1000;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            transform: translateX(0);
+            transition: transform 0.4s ease;
         }
 
         body.dark-active .sidebar {
@@ -218,6 +220,61 @@
             color: white;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1100;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-indigo-light);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        body.dark-active .mobile-menu-btn {
+            background: var(--color-indigo-dark);
+        }
+
+        .mobile-menu-btn i {
+            font-size: 1.5rem;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Close button for mobile sidebar */
+        .close-sidebar {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: none;
+            z-index: 1001;
+        }
+
+        body.dark-active .close-sidebar {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
         /* Main Content */
         .main-content {
             margin-left: var(--sidebar-width);
@@ -225,6 +282,7 @@
             padding: 3rem 2rem;
             max-width: calc(100% - var(--sidebar-width));
             width: 100%;
+            transition: margin-left 0.4s ease;
         }
 
         /* CV Container */
@@ -692,30 +750,33 @@
         /* Enhanced Responsive Styles */
         @media (max-width: 992px) {
             .sidebar {
-                width: 80px;
-                padding: 1.5rem 0.5rem;
+                width: var(--sidebar-width);
+                transform: translateX(-100%);
             }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .close-sidebar {
+                display: flex;
+            }
+            
             .sidebar-header {
                 padding: 0 0.5rem 1rem;
             }
-            .sidebar-name, .sidebar-title, .text {
-                display: none;
-            }
-            .sidebar a {
-                justify-content: center;
-                padding: 0.8rem;
-            }
-            .sidebar a .emoji {
-                font-size: 1.4rem;
-                width: auto;
-            }
-            .main-content {
-                margin-left: 80px;
-                padding: 2rem 1rem;
-            }
+            
             .social-links {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
                 gap: 0.8rem;
             }
         }
@@ -767,11 +828,11 @@
 
         @media (max-width: 576px) {
             .sidebar {
-                width: 60px;
+                width: 100%;
+                max-width: 300px;
             }
             
             .main-content {
-                margin-left: 60px;
                 padding: 1.5rem 0.8rem;
             }
             
@@ -901,7 +962,16 @@
     </style>
 </head>
 <body class="light-active">
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
     <aside class="sidebar">
+        <div class="close-sidebar">
+            <i class="fas fa-times"></i>
+        </div>
+        
         <div class="sidebar-header">
             <h2 class="sidebar-name">Jawad Abbasi</h2>
             <p class="sidebar-title">Python Developer</p>
@@ -914,24 +984,23 @@
             <li><a href="cv.html" class="active"><span class="emoji">📄</span> <span class="text">CV</span></a></li>
             <li><a href="blog.html"><span class="emoji">📝</span> <span class="text">Blog</span></a></li>
             <li><a href="contactme.html"><span class="emoji">📞</span> <span class="text">Contact Me</span></a></li>
-            <li><a href="myProject.html" class="nav-item"><span class="icon">📽</span>MY Projects</a></li>
+            <li><a href="myProject.html"><span class="emoji">📽</span> <span class="text">My Projects</span></a></li>
         </ul>
         
-       <div class="social-links">
-    <a href="https://www.linkedin.com/in/jawad-abbasi-60b342307/" target="_blank" class="social-link" aria-label="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-    </a>
-    <a href="https://github.com/jawadabbasi14" target="_blank" class="social-link" aria-label="GitHub">
-        <i class="fab fa-github"></i>
-    </a>
-    <a href="https://x.com/MJxJawaD" target="_blank" class="social-link" aria-label="Twitter / X">
-        <i class="fab fa-twitter"></i>
-    </a>
-    <a href="#" target="_blank" class="social-link" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-</div>
-
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/jawad-abbasi-60b342307/" target="_blank" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/jawadabbasi14" target="_blank" class="social-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://x.com/MJxJawaD" target="_blank" class="social-link" aria-label="Twitter / X">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" target="_blank" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
     </aside>
 
     <main class="main-content">
@@ -985,7 +1054,7 @@
                         <div class="skill-tag">HTML5/CSS3</div>
                         <div class="skill-tag">JavaScript</div>
                         <div class="skill-tag">SQL</div>
-                        <div class="skill-tag">Ai develpor</div>
+                        <div class="skill-tag">AI Developer</div>
                     </div>
                 </div>
                 
@@ -1085,7 +1154,6 @@
                 </div>
             </section>
             
-            <!-- New Certificate Section -->
             <section id="certificate">
                 <h2><i class="fas fa-certificate"></i> Programming Certificate</h2>
                 <div class="content-item">
@@ -1162,6 +1230,11 @@
                 
                 // Add active class to clicked link
                 link.classList.add('active');
+                
+                // Close sidebar on mobile after clicking a link
+                if (window.innerWidth <= 992) {
+                    document.querySelector('.sidebar').classList.remove('active');
+                }
             });
         });
         
@@ -1182,6 +1255,29 @@
         // Observe all sections
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
+        });
+        
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const closeSidebar = document.querySelector('.close-sidebar');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+        
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992 && 
+                !sidebar.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target) &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
         });
     </script>
 </body>
