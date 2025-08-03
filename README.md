@@ -8,7 +8,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
 
-**A modern, responsive personal portfolio website showcasing full-stack development skills and professional experience.**
+**A modern, responsive personal portfolio website showcasing Python development skills and programming expertise.**
 
 [🌐 **Live Demo**](https://jawadabbasi14.github.io/Mj-Porfolio/) • [📧 **Contact**](mailto:your-email@example.com) • [💼 **LinkedIn**](https://linkedin.com/in/yourprofile)
 
@@ -34,12 +34,12 @@
 
 ## 🎯 About
 
-Welcome to the official portfolio of **MJ Abbasi**, a passionate full-stack developer, designer, and tech enthusiast. This project showcases my work, skills, and personality — all wrapped in a modern, responsive, and elegant web experience.
+Welcome to the official portfolio of **MJ Abbasi**, a passionate Python Developer & Programmer crafting elegant solutions to complex problems. This project showcases my work, skills, and personality — all wrapped in a modern, responsive, and elegant web experience.
 
 ### 🌟 Key Highlights
 - **Modern Design**: Clean, professional aesthetic with attention to detail
-- **Full-Stack Showcase**: Demonstrates both frontend and backend capabilities  
-- **Performance Optimized**: Fast loading times and smooth interactions
+- **Python Focus**: Specialized in Python development and programming solutions  
+- **Problem Solver**: Crafting elegant solutions to complex technical challenges
 - **SEO Friendly**: Optimized for search engines and social media sharing
 
 ---
@@ -252,7 +252,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**MJ Abbasi** - Full Stack Developer
+**MJ Abbasi** - Python Developer & Programmer
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourprofile)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/yourhandle)
