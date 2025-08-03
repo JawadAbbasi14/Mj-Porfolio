@@ -21,6 +21,9 @@
             --primary: #8B5CF6; /* Vibrant Purple */
             --secondary: #7C3AED; /* Darker Purple */
             --accent: #EC4899; /* Pink */
+            --tech-blue: #3B82F6; /* Professional tech blue */
+            --tech-green: #10B981; /* Professional tech green */
+            --tech-cyan: #06B6D4; /* Professional tech cyan */
 
             /* Light Mode Colors */
             --bg-main: #F8FAFC; /* Very light blue-gray for main background */
@@ -400,7 +403,6 @@
         .project-card {
             background: rgba(255, 255, 255, var(--glass-bg-alpha)); /* Dynamic glass background */
             border-radius: 30px;
-            /* overflow: hidden; */ /* Keep if content inside should be clipped, remove if pop-out needs to break bounds */
             transition: all var(--transition-speed) var(--transition-ease); /* Smooth transitions for all properties */
             backdrop-filter: blur(20px); /* Stronger frosted glass effect */
             -webkit-backdrop-filter: blur(20px);
@@ -457,7 +459,10 @@
         .project-card:nth-child(3) { animation-delay: 0.4s; }
         .project-card:nth-child(4) { animation-delay: 0.6s; }
         .project-card:nth-child(5) { animation-delay: 0.8s; }
-        .project-card:nth-child(6) { animation-delay: 1.0s; } /* Added for new project */
+        .project-card:nth-child(6) { animation-delay: 1.0s; }
+        .project-card:nth-child(7) { animation-delay: 1.2s; }
+        .project-card:nth-child(8) { animation-delay: 1.4s; }
+        .project-card:nth-child(9) { animation-delay: 1.6s; }
 
         /* Project Card Hover Effect: Scale up, strong 3D pop-out, and neon glow border */
         .project-card:hover {
@@ -483,6 +488,8 @@
             /* Ensure image scales from its center for better pop-out */
             transform-origin: center center;
             transition: transform var(--transition-speed) var(--transition-ease);
+            border-radius: 30px 30px 0 0;
+            overflow: hidden;
         }
 
         /* Image inside card scales slightly on card hover */
@@ -653,6 +660,29 @@
         .project-link:hover i {
             transform: translateX(8px);
         }
+        
+        /* Tech stack tags */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0 20px;
+        }
+        
+        .tech-tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover .tech-tag {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateY(-2px);
+        }
 
         /* Mobile Toggle Button */
         .mobile-toggle {
@@ -725,6 +755,20 @@
             box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
         }
 
+        /* Project status indicator */
+        .project-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--tech-green);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
 
         /* Responsive Design */
         @media (max-width: 1200px) {
@@ -920,16 +964,23 @@
                 </div>
             </div>
 
-            <!-- Weather App Project Card -->
+            <!-- Elite Weather App Project Card -->
             <div class="project-card">
-                <div class="card-image" style="background: linear-gradient(135deg, #0284C7, #38BDF8);">
+                <div class="card-image" style="background: linear-gradient(135deg, #0284C7, #38BDF8, #06B6D4);">
                     <div class="project-icon">☀️</div>
+                    <div class="project-status">✅ Live</div>
                 </div>
                 <div class="card-content">
                     <span class="project-type">Web Application</span>
-                    <h3 class="project-title">Weather Forecast App</h3>
-                    <p class="project-description">A responsive weather app delivering real-time conditions and forecasts via API, with location detection and unit toggles.</p>
-                    <a href="https://hashimthepassionate.github.io/weather-app/" class="project-link" target="_blank">
+                    <h3 class="project-title">Elite Weather App</h3>
+                    <p class="project-description">Real-time weather application with location detection, unit toggle, and detailed forecasts using a professional weather API.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">Weather API</span>
+                    </div>
+                    <a href="https://jawadabbasi14.github.io/EliteWeatherApp/" class="project-link" target="_blank">
                         View Project <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -950,7 +1001,49 @@
                 </div>
             </div>
             
-            <!-- Expense Tracker Project Card (New) -->
+            <!-- MJ Interactive 3D Robot (First Version) -->
+            <div class="project-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-status">✅ Completed</div>
+                </div>
+                <div class="card-content">
+                    <span class="project-type">3D Interactive</span>
+                    <h3 class="project-title">MJ Interactive 3D Robot</h3>
+                    <p class="project-description">Interactive robot built with Three.js featuring camera controls, object manipulation, and a responsive environment.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">WebGL</span>
+                    </div>
+                    <a href="https://jawadabbasi14.github.io/mj-interactive-3d-robot-1st/" class="project-link" target="_blank">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- MJ Interactive 3D Robot (Second Version) -->
+            <div class="project-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #EC4899, #8B5CF6);">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-status">✅ Completed</div>
+                </div>
+                <div class="card-content">
+                    <span class="project-type">3D Interactive</span>
+                    <h3 class="project-title">Enhanced 3D Robot</h3>
+                    <p class="project-description">Upgraded version with improved visuals, textures, lighting, and interaction controls for a more immersive experience.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">GLTF</span>
+                        <span class="tech-tag">Advanced Shaders</span>
+                    </div>
+                    <a href="https://jawadabbasi14.github.io/mj-interactive-3d-robot-2nd/" class="project-link" target="_blank">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Expense Tracker Project Card -->
             <div class="project-card">
                 <div class="card-image" style="background: linear-gradient(135deg, #F59E0B, #FCD34D);">
                     <div class="project-icon">💰</div>
