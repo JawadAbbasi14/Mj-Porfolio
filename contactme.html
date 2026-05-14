@@ -25,9 +25,6 @@ body { min-height: 100vh; display: flex; flex-direction: column; transition: bac
   --sidebar-nav-item-hover-bg: rgba(76,175,80,0.15);
   --sidebar-nav-item-active-bg: rgba(76,175,80,0.25);
   --sidebar-nav-item-active-border: #4CAF50;
-  --ai-assistant-bg: rgba(240,240,240,0.8);
-  --message-idea-bg: #e9f5e9; --message-idea-border: #c8e6c9;
-  --message-idea-text: #388e3c; --message-idea-hover-bg: #d7edd7;
   --success-bg: #e8f5e9; --success-border: #c8e6c9; --success-text: #2e7d32;
   --error-bg: #ffebee; --error-border: #ffcdd2; --error-text: #c62828;
 }
@@ -47,9 +44,6 @@ body { min-height: 100vh; display: flex; flex-direction: column; transition: bac
   --sidebar-nav-item-hover-bg: rgba(255,0,122,0.15);
   --sidebar-nav-item-active-bg: rgba(255,0,122,0.25);
   --sidebar-nav-item-active-border: #ff007a;
-  --ai-assistant-bg: rgba(25,25,25,0.8);
-  --message-idea-bg: #4a0e2e; --message-idea-border: #6b1543;
-  --message-idea-text: #ff80bf; --message-idea-hover-bg: #5e113a;
   --success-bg: #1b5e20; --success-border: #388e3c; --success-text: #a5d6a7;
   --error-bg: #b71c1c; --error-border: #d32f2f; --error-text: #ffcdd2;
 }
@@ -154,17 +148,6 @@ body { background: var(--bg-primary); color: var(--text-primary); }
   width: 100px; height: 5px; background: var(--accent-gradient); border-radius: 3px; box-shadow: var(--glow);
 }
 
-/* AI Assistant */
-.ai-message-assistant { background-color: var(--ai-assistant-bg); padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--card-border); }
-.ai-message-assistant h3 { font-size: 1.3rem; color: var(--accent); margin-bottom: 15px; text-align: center; }
-.ai-message-assistant .form-group { margin-bottom: 15px; }
-#generateMessageIdeasBtn { display: block; width: 100%; padding: 12px; background: var(--accent-gradient); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; margin-top: 10px; }
-#generateMessageIdeasBtn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px var(--glow); }
-#ideasLoadingIndicator { text-align: center; color: var(--text-secondary); font-style: italic; margin-top: 10px; display: none; }
-#messageIdeasContainer { margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
-.message-idea { background-color: var(--message-idea-bg); border: 1px solid var(--message-idea-border); color: var(--message-idea-text); padding: 12px 15px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: background-color 0.3s, transform 0.2s; }
-.message-idea:hover { background-color: var(--message-idea-hover-bg); transform: translateY(-2px); }
-
 /* Form Fields */
 .form-group { position: relative; margin-bottom: 30px; }
 .form-label { position: absolute; top: 20px; left: 55px; color: var(--text-secondary); transition: all 0.3s ease; pointer-events: none; font-size: 1.1rem; }
@@ -256,18 +239,6 @@ textarea.form-input { min-height: 150px; resize: vertical; }
       <form id="contactForm">
         <h1>Connect with Me</h1>
 
-        <div class="ai-message-assistant">
-          <h3>✨ Smart Message Assistant</h3>
-          <div class="form-group">
-            <i class="form-icon fas fa-lightbulb"></i>
-            <input type="text" class="form-input" id="messageTopicInput" placeholder=" ">
-            <label for="messageTopicInput" class="form-label">Briefly, what's your query about?</label>
-          </div>
-          <button type="button" id="generateMessageIdeasBtn">Get Message Ideas</button>
-          <div id="ideasLoadingIndicator">Generating ideas... <i class="fas fa-spinner fa-spin"></i></div>
-          <div id="messageIdeasContainer"></div>
-        </div>
-
         <div class="form-group">
           <i class="form-icon fas fa-user"></i>
           <input type="text" class="form-input" id="clintInputName1" name="from_name" placeholder=" " required>
@@ -310,7 +281,7 @@ textarea.form-input { min-height: 150px; resize: vertical; }
 <a href="index.html" class="go-home">Back to Home</a>
 
 <div class="footer">
-  <p>© 2024 Jawad. All Rights Reserved | Crafted with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
+  <p>© 2026 Jawad. All Rights Reserved | Crafted with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
 </div>
 
 <div class="toast" id="toast">
@@ -325,33 +296,11 @@ textarea.form-input { min-height: 150px; resize: vertical; }
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
 // ═══════════════════════════════════════════════════════════
-//  EMAILJS SETUP — SIRF 5 MINUTE KA KAAM!
-//
-//  Step 1: emailjs.com par FREE account banao
-//
-//  Step 2: "Email Services" → "Add New Service"
-//          → Gmail choose karo → apni Gmail connect karo
-//          → Service ID copy karo  (e.g. service_ab12cd)
-//
-//  Step 3: "Email Templates" → "Create New Template"
-//          Subject:  New message from {{from_name}}
-//          Body:
-//            Name:    {{from_name}}
-//            Email:   {{from_email}}
-//            Phone:   {{phone}}
-//            Project: {{is_project}}
-//            Message: {{message}}
-//          "To Email" field mein: jawadabbasi1107@gmail.com
-//          → Template ID copy karo  (e.g. template_xy34ef)
-//
-//  Step 4: Top-right "Account" → Public Key copy karo
-// ═══════════════════════════════════════════════════════════
-// APNI REAL DETAILS - VERIFIED FROM SCREENSHOTS
+// VERIFIED EMAILJS CONFIGURATION
 // ═══════════════════════════════════════════════════════════
 const EMAILJS_PUBLIC_KEY  = "HpKkWE-ImRylNXvLz"; 
 const EMAILJS_SERVICE_ID  = "service_850icys"; 
-const EMAILJS_TEMPLATE_ID = "template_6aa2uen"; // image_bc08a8.png se confirmed
-// ═════════════════════════════════════════════════════════════════════════════════════════
+const EMAILJS_TEMPLATE_ID = "template_6aa2uen"; 
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
 
@@ -391,16 +340,13 @@ function hideToast() { document.getElementById('toast').classList.remove('show')
 // Form submit
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+  
   const name    = document.getElementById('clintInputName1').value.trim();
   const email   = document.getElementById('clintInputEmail1').value.trim();
   const message = document.getElementById('clintInputEnquiry').value.trim();
 
   if (!name || !email || !message) {
     showToast('Fields Missing!', 'Name, Email aur Message zaroori hain.', true);
-    return;
-  }
-  if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-    showToast('Setup Needed!', 'Code mein EmailJS keys daalo pehle. Instructions comments mein hain.', true);
     return;
   }
 
@@ -419,13 +365,12 @@ document.getElementById('contactForm').addEventListener('submit', async function
       is_project: document.getElementById('isclient').checked ? '✅ Yes — wants a project' : '❌ No',
       reply_to:   email
     });
-    showToast('Message Sent! ✅', 'MJ Abbasi will get back to you soon.', false);
+    
+    showToast('Message Sent! ✅', 'Jawad ko aapka message mil gaya hai.', false);
     e.target.reset();
-    document.getElementById('messageTopicInput').value = '';
-    document.getElementById('messageIdeasContainer').innerHTML = '';
   } catch(err) {
-    console.error(err);
-    showToast('Send Failed!', 'Seedha email karo: jawadabbasi1107@gmail.com', true);
+    console.error('EmailJS Execution Error:', err);
+    showToast('Send Failed!', 'Direct email karein: jawadabbasi1107@gmail.com', true);
   } finally {
     document.getElementById('submitText').textContent = 'Send Message';
     document.getElementById('submitIcon').style.display = 'inline';
@@ -434,62 +379,12 @@ document.getElementById('contactForm').addEventListener('submit', async function
   }
 });
 
-// Smart Message Assistant
-document.getElementById('generateMessageIdeasBtn').addEventListener('click', async () => {
-  const topic = document.getElementById('messageTopicInput').value.trim();
-  const container = document.getElementById('messageIdeasContainer');
-  const loader = document.getElementById('ideasLoadingIndicator');
-
-  if (!topic) {
-    container.innerHTML = '<p style="color:var(--accent);text-align:center;padding:8px">Pehle topic likho!</p>';
-    setTimeout(() => { container.innerHTML = ''; }, 2500);
-    return;
-  }
-
-  loader.style.display = 'block';
-  container.innerHTML = '';
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 400,
-        messages: [{
-          role: 'user',
-          content: `Generate 3 short professional message opening suggestions (under 25 words each) for someone contacting a Python/Django developer about: "${topic}". Return ONLY a valid JSON array of 3 strings with no extra text or markdown.`
-        }]
-      })
-    });
-    const data = await res.json();
-    let text = data.content?.[0]?.text || '[]';
-    text = text.replace(/```json|```/g, '').trim();
-    const ideas = JSON.parse(text);
-    ideas.forEach(idea => {
-      const div = document.createElement('div');
-      div.className = 'message-idea';
-      div.textContent = idea;
-      div.onclick = () => {
-        document.getElementById('clintInputEnquiry').value = idea;
-        document.getElementById('clintInputEnquiry').focus();
-      };
-      container.appendChild(div);
-    });
-  } catch(err) {
-    container.innerHTML = '<p style="color:var(--accent);text-align:center;padding:8px">Ideas nahi aye. Khud likho!</p>';
-  } finally {
-    loader.style.display = 'none';
-  }
-});
-
 // Page init
 document.addEventListener('DOMContentLoaded', () => {
-  // Apply saved theme (default dark)
   const saved = localStorage.getItem('theme') || 'dark';
   document.body.className = saved;
 
-  const color = getComputedStyle(document.body).getPropertyValue('--particles-color').trim();
+  const color = getComputedStyle(document.body).getPropertyValue('--particles-color').trim() || "#ff007a";
 
   particlesJS("particles-js", {
     particles: {
@@ -505,7 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Active nav
   const page = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll('.sidebar nav ul li a').forEach(a => {
     if (a.getAttribute('href').split("/").pop() === page) a.classList.add('active');
